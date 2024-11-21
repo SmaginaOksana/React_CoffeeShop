@@ -1,0 +1,17 @@
+@import "../../style/vars.scss";
+
+.activeCoffee {
+  padding: 26px;
+  width: 154px;
+  height: 164px;
+  border-radius: 15px;
+  background-color: rgb(247, 248, 251);
+  img {
+    margin: auto;
+  }
+  h3 {
+    margin-top: 17px;
+    @include font(14px, 500, 20px, rgb(0, 24, 51));
+    text-align: center;
+  }
+}

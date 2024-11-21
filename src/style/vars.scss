@@ -1,0 +1,14 @@
+@mixin flex($direction, $just-cont, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $just-cont;
+  align-items: $align;
+}
+@mixin font($size, $weight, $height, $color) {
+  font-family: "Poppins";
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+
+  color: $color;
+}

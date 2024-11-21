@@ -1,0 +1,40 @@
+@import "../style/vars.scss";
+
+.wrapper {
+  width: 375px;
+  margin: auto;
+  header {
+    .container {
+      padding: 16px 26px;
+      @include flex(row, space-between, center);
+      h3 {
+        @include font(14px, 500, auto, rgb(216, 216, 216));
+      }
+      h1 {
+        @include font(18px, 500, auto, rgb(0, 24, 51));
+      }
+      .profile {
+        @include flex(row, space-between, center);
+        gap: 24px;
+      }
+    }
+  }
+  main {
+    background-color: rgb(50, 74, 89);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+  footer {
+    background-color: rgb(50, 74, 89);
+    padding: 16px 26px;
+    .container {
+      @include flex(row, space-between, center);
+      border-radius: 25px;
+      background-color: rgb(247, 248, 251);
+      padding: 22px 56px;
+    }
+  }
+  img {
+    display: block;
+  }
+}

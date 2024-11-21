@@ -1,0 +1,15 @@
+@import "../../style/vars.scss";
+
+.container {
+  @include flex(column, space-between, center);
+  gap: 24px;
+  padding: 16px 26px;
+  h2 {
+    width: 100%;
+    @include font(16px, 500, auto, rgb(216, 216, 216));
+  }
+  .coffee {
+    @include flex(column, center, center);
+    gap: 17px;
+  }
+}

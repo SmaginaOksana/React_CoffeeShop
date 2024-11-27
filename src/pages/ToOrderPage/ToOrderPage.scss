@@ -1,0 +1,139 @@
+@import "../../style/vars.scss";
+
+.wrapper {
+  .headerToOrderPage {
+    .container {
+      padding-top: 57px;
+      padding-bottom: 22px;
+      .top {
+        @include flex(row, space-between, center);
+        margin-bottom: 11px;
+      }
+      .mainImage {
+        border-radius: 12px;
+        padding: 35px;
+        background-color: rgb(247, 248, 251);
+        @include flex(row, center, center);
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .mainToOrderPage {
+    .container {
+      .active {
+        border-bottom: 3px black solid;
+      }
+      hr {
+        border: 0.5px solid rgba(216, 216, 216, 0.4);
+      }
+      .countSection,
+      .ristretto,
+      .takeaway,
+      .volume,
+      .time {
+        padding: 16px 0;
+      }
+      .countSection {
+        @include flex(row, space-between, center);
+        .count {
+          border-radius: 50px;
+          border: 1px solid rgba(216, 216, 216, 0.4);
+          @include flex(row, space-between, center);
+          width: 73px;
+          padding: 4px 11px;
+        }
+      }
+      .ristretto {
+        @include flex(row, space-between, center);
+        > div {
+          @include flex(row, center, center);
+          gap: 8px;
+          > div {
+            height: 30px;
+            span {
+              @include flex(row, center, center);
+              width: 60px;
+              padding: 4px 11px;
+            }
+          }
+        }
+      }
+      .takeaway {
+        @include flex(row, space-between, center);
+        > div {
+          @include flex(row, space-between, center);
+          gap: 31px;
+          > div {
+            height: 35px;
+            img {
+              width: 30px;
+            }
+          }
+        }
+      }
+      .volumeSection {
+        @include flex(row, space-between, center);
+        .volume {
+          @include flex(row, space-between, flex-end);
+          gap: 25px;
+          > div {
+            gap: 10px;
+            height: 60px;
+            > div {
+              height: 60px;
+              @include flex(column, flex-end, center);
+              .volume_250 {
+                width: 25px;
+              }
+              .volume_350 {
+                width: 35px;
+              }
+              .volume_450 {
+                width: 45px;
+              }
+            }
+          }
+        }
+      }
+      .time {
+        @include flex(row, space-between, center);
+        span {
+          border-radius: 50px;
+          background-color: rgba(216, 216, 216, 0.4);
+          @include flex(row, center, center);
+          width: 60px;
+          padding: 4px 11px;
+        }
+      }
+    }
+  }
+  .footerToOrderPage {
+    .container {
+      position: relative;
+      @include flex(column, center, center);
+      padding-top: 25px;
+      padding-bottom: 25px;
+      gap: 42px;
+      .options {
+        position: absolute;
+        bottom: 105px;
+        color: rgb(187, 73, 73);
+        font-weight: 700;
+      }
+      .amount {
+        width: 100%;
+        @include flex(row, space-between, center);
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 30px;
+        margin-bottom: 20px;
+        background-color: rgb(50, 74, 89);
+        color: rgb(216, 216, 216);
+      }
+    }
+  }
+}

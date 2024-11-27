@@ -1,0 +1,39 @@
+@import "../../style/vars.scss";
+
+.wrapper {
+  .headerWelcomePage {
+    margin-bottom: 50px;
+    padding-top: 36px;
+  }
+  .mainWelcomePage {
+    .darkBack {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: rgb(50, 74, 89);
+      @include flex(column, space-between, center);
+      gap: 29px;
+    }
+    .lightBack {
+      padding-top: 40px;
+      h1 {
+        width: 239px;
+        margin: auto;
+      }
+      h2 {
+        text-align: center;
+        color: rgb(170, 170, 170);
+        line-height: 194.6%;
+        margin-bottom: 127px;
+      }
+    }
+  }
+  footer {
+    .buttonRight {
+      width: 100%;
+      @include flex(row, flex-end, center);
+      height: 64px;
+      border: none;
+      margin-bottom: 50px;
+    }
+  }
+}

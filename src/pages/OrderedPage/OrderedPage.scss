@@ -1,0 +1,47 @@
+@import "../../style/vars.scss";
+
+.wrapper {
+  .headerOrderedPage {
+    .container {
+      padding-top: 57px;
+      margin-bottom: 131px;
+    }
+  }
+  .mainOrderedPage {
+    .container {
+      margin-bottom: 65px;
+      @include flex(column, space-between, center);
+      gap: 22px;
+      h5 {
+        text-align: center;
+        line-height: 194.6%;
+      }
+      .placed {
+        color: rgb(216, 216, 216);
+      }
+      .time {
+        width: 190px;
+      }
+      .submit {
+        color: rgb(216, 216, 216);
+      }
+    }
+  }
+  .footerOrderedPage {
+    .container {
+      padding-bottom: 30px;
+      button {
+        @include flex(row, space-around, center);
+        margin: auto;
+        width: 70%;
+        padding: 10px 29px;
+        border: none;
+        border-radius: 30px;
+        background-color: rgb(50, 74, 89);
+        span {
+          color: rgb(216, 216, 216);
+        }
+      }
+    }
+  }
+}

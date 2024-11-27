@@ -1,0 +1,9 @@
+@import "../../style/vars.scss";
+
+.wrapper {
+  .mainOpenPage {
+    background-image: url("/background.png");
+    padding: 162px 41px 441px;
+    @include flex(column, space-between, center);
+  }
+}

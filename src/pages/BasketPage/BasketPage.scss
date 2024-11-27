@@ -1,0 +1,37 @@
+@import "../../style/vars.scss";
+
+.wrapper {
+  .headerBasket {
+    .container {
+      padding-top: 57px;
+      margin-bottom: 24px;
+      .left {
+        margin-bottom: 24px;
+      }
+    }
+  }
+  .mainBasket {
+    .container {
+      min-height: 577px;
+      @include flex(column, flex-start, center);
+      gap: 20px;
+    }
+  }
+  .footerBasket {
+    .container {
+      @include flex(row, space-between, center);
+      padding-bottom: 33px;
+      button {
+        @include flex(row, space-around, center);
+        width: 165px;
+        padding: 14px 29px;
+        border: none;
+        border-radius: 30px;
+        background-color: rgb(50, 74, 89);
+        span {
+          color: rgb(216, 216, 216);
+        }
+      }
+    }
+  }
+}

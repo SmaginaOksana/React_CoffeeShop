@@ -1,0 +1,67 @@
+@import "../../style/vars.scss";
+
+.wrapper {
+  .headerRegistrPage {
+    margin-bottom: 46px;
+    padding-top: 36px;
+    .container {
+      @include flex(column, space-between, flex-start);
+      > div {
+        padding-top: 21px;
+      }
+    }
+  }
+  .mainRegistrPage {
+    padding: 0 15px;
+    .container {
+      h2 {
+        margin-bottom: 24px;
+      }
+      .create {
+        color: rgb(170, 170, 170);
+        margin-bottom: 46px;
+      }
+      .formUser {
+        .terms {
+          color: rgb(50, 74, 89);
+          font-size: 12px;
+          line-height: 194.6%;
+        }
+        .emptyFields {
+          position: absolute;
+          bottom: 170px;
+          color: rgb(169, 95, 95);
+          font-size: 12px;
+          line-height: 12px;
+        }
+        .errors {
+          position: absolute;
+          bottom: 30px;
+          color: rgb(169, 95, 95);
+          font-size: 12px;
+          line-height: 12px;
+        }
+        .buttonRight {
+          margin-bottom: 92px;
+          @include flex(row, flex-end, center);
+          height: 64px;
+          border: none;
+        }
+      }
+    }
+  }
+  footer {
+    .container {
+      @include flex(row, flex-start, flex-start);
+      p {
+        padding-left: 15px;
+        color: rgb(170, 170, 170);
+        margin-right: 5px;
+      }
+      a {
+        color: rgb(50, 74, 89);
+        margin-bottom: 71px;
+      }
+    }
+  }
+}

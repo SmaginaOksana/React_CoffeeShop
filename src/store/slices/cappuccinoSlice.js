@@ -2,13 +2,21 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const cappuccinoSlice = createSlice({
   name: "cappuccino",
-  initialState: [],
+  initialState: {
+    name: null,
+    count: null,
+    price: null,
+    image: null,
+  },
   reducers: {
-    addCappuccino(state, action) {
-      state.push(action.payload);
+    setCappuccino(state, action) {
+      state.name = action.payload.name;
+      state.count = action.payload.count;
+      state.price = action.payload.price;
+      state.image = action.payload.image;
     },
   },
 });
 
 export default cappuccinoSlice.reducer;
-export const { addCappuccino } = cappuccinoSlice.actions;
+export const { setCappuccino } = cappuccinoSlice.actions;

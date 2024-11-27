@@ -1,15 +1,37 @@
 @import "../../style/vars.scss";
 
-.container {
-  @include flex(column, space-between, center);
-  gap: 24px;
-  padding: 16px 26px;
-  h2 {
-    width: 100%;
-    @include font(16px, 500, auto, rgb(216, 216, 216));
+.wrapper {
+  .headerHomePage {
+    background-color: white;
+    padding-bottom: 7px;
+    padding-top: 55px;
+    .container {
+      @include flex(row, space-between, center);
+      .greetings {
+        h5 {
+          margin-bottom: 2px;
+        }
+      }
+    }
   }
-  .coffee {
-    @include flex(column, center, center);
-    gap: 17px;
+  .mainHomePage {
+    background-color: rgb(50, 74, 89);
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    .container {
+      padding-top: 16px;
+      padding-bottom: 114px;
+      @include flex(column, space-between, center);
+      gap: 25px;
+      h4 {
+        width: 100%;
+        color: rgb(216, 216, 216);
+      }
+      .coffeeContainer {
+        @include flex(row, space-between, center);
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
   }
 }

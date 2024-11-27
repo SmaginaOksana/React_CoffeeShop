@@ -1,80 +1,152 @@
 import { useLayoutEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.scss";
-import { getData } from "../services/servicesDB";
+import { getData } from "../services/FB_server";
 import { useDispatch } from "react-redux";
-import { addCappuccino } from "../store/slices/cappuccinoSlice";
-import { addLatte } from "../store/slices/latteSlice";
-import { addRaf } from "../store/slices/rafSlice";
-import HomePage from "../pages/HomePage/HomePage";
-import ActiveCoffeePage from "../pages/ActiveCoffeePage/ActiveCoffeePage";
+import {
+  setAmericano,
+  setCappuccino,
+  setLatte,
+  setFlatWhite,
+  setRaf,
+  setEspresso,
+  setBasket,
+  setUsers,
+} from "../store/index.js";
+
+import {
+  WelcomePage,
+  RegistrPage,
+  AuthPage,
+  HomePage,
+  ToOrderPage,
+  ForgotPasswordPage,
+  BasketPage,
+  OrderedPage,
+  OpenPage,
+} from "../pages/index.js";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
+  const auth = getAuth();
   const dispatch = useDispatch();
-  const cappuccinoDB = getData("Cappuccino");
-  const latteDB = getData("Latte");
-  const rafDB = getData("Raf");
   const [activeLink, setActiveLink] = useState("");
+  const navigate = useNavigate();
+  const [flag, setFlag] = useState(false);
+  const [welcomePage, setWelcomePage] = useState(true);
 
   useLayoutEffect(() => {
-    Promise.allSettled([cappuccinoDB, latteDB, rafDB]).then((results) => {
-      if (results[0].status === "fulfilled") {
-        results[0].value.map((item) => dispatch(addCappuccino(item)));
-      }
-      if (results[1].status === "fulfilled") {
-        results[1].value.map((item) => dispatch(addLatte(item)));
-      }
-      if (results[2].status === "fulfilled") {
-        results[2].value.map((item) => dispatch(addRaf(item)));
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate("/");
+        if (!welcomePage && navigate !== "/registr") {
+          if (navigate !== "/auth") {
+            navigate("/registr");
+            return;
+          }
+          return;
+        }
+      } else {
+        if (!welcomePage) {
+          navigate("/auth");
+        } else {
+          navigate("/open");
+        }
       }
     });
-  }, []);
+
+    Promise.allSettled([
+      getData("Americano"),
+      getData("Cappuccino"),
+      getData("Latte"),
+      getData("Flat White"),
+      getData("Raf"),
+      getData("Espresso"),
+      getData("basket"),
+      getData("users"),
+    ]).then((results) => {
+      if (results[0].status === "fulfilled") {
+        dispatch(setAmericano(results[0].value));
+      }
+      if (results[1].status === "fulfilled") {
+        dispatch(setCappuccino(results[1].value));
+      }
+      if (results[2].status === "fulfilled") {
+        dispatch(setLatte(results[2].value));
+      }
+      if (results[3].status === "fulfilled") {
+        dispatch(setFlatWhite(results[3].value));
+      }
+      if (results[4].status === "fulfilled") {
+        dispatch(setRaf(results[4].value));
+      }
+      if (results[5].status === "fulfilled") {
+        dispatch(setEspresso(results[5].value));
+      }
+      if (results[6].status === "fulfilled") {
+        dispatch(setBasket(results[6].value ? results[6].value : []));
+      }
+      if (results[7].status === "fulfilled") {
+        dispatch(
+          setUsers(results[7].value ? Object.values(results[7].value) : [])
+        );
+      }
+    });
+  }, [flag, welcomePage]);
 
   return (
     <>
       <div className="wrapper">
-        <header>
-          <div className="container">
-            <div className="greetings">
-              <h3>Welcome!</h3>
-              <h1>Alex</h1>
-            </div>
-            <div className="profile">
-              <img src="/buy.png" alt="buy" />
-              <img src="/profile.png" alt="profile" />
-            </div>
-          </div>
-        </header>
-        <main>
-          <Routes>
-            <Route
-              path="/"
-              element={<HomePage setActiveLink={setActiveLink} />}
-            />
-            <Route
-              path="/coffee"
-              element={
-                <ActiveCoffeePage
-                  activeLink={activeLink}
-                  setActiveLink={setActiveLink}
-                />
-              }
-            />
-          </Routes>
-        </main>
-        <footer>
-          <div className="container">
-            <div>
-              <img src="/home.png" alt="home" />
-            </div>
-            <div>
-              <img src="/prize.png" alt="prize" />
-            </div>
-            <div>
-              <img src="/list.png" alt="list" />
-            </div>
-          </div>
-        </footer>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <WelcomePage
+                navigate={navigate}
+                setWelcomePage={setWelcomePage}
+              />
+            }
+          />
+          <Route path="/open" element={<OpenPage navigate={navigate} />} />
+          <Route
+            path="/registr"
+            element={
+              <RegistrPage auth={auth} navigate={navigate} setFlag={setFlag} />
+            }
+          />
+          <Route
+            path="/auth"
+            element={<AuthPage auth={auth} navigate={navigate} />}
+          />
+          <Route
+            path="/forgotPassword"
+            element={<ForgotPasswordPage auth={auth} navigate={navigate} />}
+          />
+          <Route
+            path="/home"
+            element={
+              <HomePage setActiveLink={setActiveLink} navigate={navigate} />
+            }
+          />
+          <Route
+            path="/toOrder"
+            element={
+              <ToOrderPage
+                activeLink={activeLink}
+                navigate={navigate}
+                setFlag={setFlag}
+              />
+            }
+          />
+          <Route
+            path="/basket"
+            element={<BasketPage navigate={navigate} setFlag={setFlag} />}
+          />
+          <Route
+            path="/ordered"
+            element={<OrderedPage navigate={navigate} />}
+          />
+        </Routes>
       </div>
     </>
   );

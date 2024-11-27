@@ -1,0 +1,57 @@
+@import "../../style/vars.scss";
+
+.basketItem {
+  width: 100%;
+  @include flex(row, space-between, center);
+  position: relative;
+  .item {
+    @include flex(row, space-between, center);
+    width: 100%;
+    padding: 15px;
+    background-color: rgb(247, 248, 251);
+    border-radius: 12px;
+    gap: 15px;
+    .imgBasketItem {
+      width: 25%;
+      img {
+        width: 100%;
+      }
+    }
+    .description {
+      @include flex(row, space-between, flex-start);
+      flex-wrap: wrap;
+      width: 58%;
+      .spanDescription {
+        @include font(12px, 500, rgb(117, 117, 117));
+      }
+      .name {
+        width: 100%;
+      }
+      .count {
+        width: 100%;
+      }
+    }
+    .priceBasketItem {
+      @include flex(column, space-between, flex-end);
+      width: 17%;
+    }
+  }
+  .close {
+    display: none;
+  }
+  .open {
+    position: absolute;
+    right: 0;
+    transition: 0.7s;
+    width: 35px;
+    background-color: rgb(255, 229, 229);
+    padding: 38px 10px;
+    border-radius: 12px;
+    img {
+      width: 15px;
+    }
+  }
+  .delete {
+    width: calc(100% - 45px);
+  }
+}

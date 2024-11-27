@@ -1,40 +1,103 @@
 @import "../style/vars.scss";
 
+body {
+  background-color: rgb(241, 241, 241);
+}
 .wrapper {
   width: 375px;
   margin: auto;
-  header {
-    .container {
-      padding: 16px 26px;
-      @include flex(row, space-between, center);
-      h3 {
-        @include font(14px, 500, auto, rgb(216, 216, 216));
-      }
-      h1 {
-        @include font(18px, 500, auto, rgb(0, 24, 51));
-      }
-      .profile {
-        @include flex(row, space-between, center);
-        gap: 24px;
-      }
-    }
-  }
-  main {
-    background-color: rgb(50, 74, 89);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-  }
-  footer {
-    background-color: rgb(50, 74, 89);
-    padding: 16px 26px;
-    .container {
-      @include flex(row, space-between, center);
-      border-radius: 25px;
-      background-color: rgb(247, 248, 251);
-      padding: 22px 56px;
-    }
+  background-color: white;
+  .container {
+    padding-left: 26px;
+    padding-right: 26px;
   }
   img {
     display: block;
+  }
+  h1 {
+    @include font(28px, 400, rgb(24, 29, 45));
+    text-align: center;
+  }
+  h2 {
+    @include font(22px, 500, rgb(24, 29, 45));
+  }
+  h3 {
+    @include font(20px, 500, rgb(24, 29, 45));
+  }
+  h4 {
+    @include font(18px, 500, rgb(24, 29, 45));
+  }
+  h5 {
+    @include font(14px, 500, rgb(24, 29, 45));
+  }
+  span {
+    @include font(14px, 500, rgb(24, 29, 45));
+  }
+  p {
+    @include font(14px, 500, rgb(0, 24, 51));
+  }
+  button {
+    @include font(14px, 500, rgb(24, 29, 45));
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .right {
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(50, 74, 89);
+    padding: 16px;
+    img {
+      width: 32px;
+    }
+  }
+  .left,
+  .basket {
+    cursor: pointer;
+  }
+
+  a {
+    cursor: pointer;
+    @include font(14px, 500, rgb(24, 29, 45));
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .formUser {
+    position: relative;
+    @include flex(column, space-between, flex-start);
+    gap: 36px;
+    > div {
+      width: 100%;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 1px solid rgb(193, 199, 208);
+      height: 29px;
+      background-color: transparent;
+      @include flex(row, flex-start, center);
+      .img {
+        @include flex(row, center, center);
+        width: 36px;
+        img {
+          padding: 9px;
+        }
+      }
+      input {
+        border: none;
+        background-color: transparent;
+        &:focus {
+          outline: none;
+          &::placeholder {
+            opacity: 0;
+          }
+        }
+        &::placeholder {
+          color: rgb(170, 170, 170);
+        }
+      }
+    }
   }
 }

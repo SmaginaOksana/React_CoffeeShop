@@ -4,11 +4,9 @@
   justify-content: $just-cont;
   align-items: $align;
 }
-@mixin font($size, $weight, $height, $color) {
+@mixin font($size, $weight, $color) {
   font-family: "Poppins";
   font-size: $size;
-  line-height: $height;
   font-weight: $weight;
-
   color: $color;
 }

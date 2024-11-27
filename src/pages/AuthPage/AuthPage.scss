@@ -1,0 +1,59 @@
+@import "../../style/vars.scss";
+
+.wrapper {
+  .headerAuthPage {
+    padding-top: 36px;
+    margin-bottom: 46px;
+    .container {
+      @include flex(column, space-between, flex-start);
+      > div {
+        padding-top: 21px;
+      }
+    }
+  }
+  .mainAuthPage {
+    padding: 0 15px;
+    .container {
+      h2 {
+        margin-bottom: 24px;
+      }
+      .welcome {
+        color: rgb(170, 170, 170);
+        margin-bottom: 46px;
+      }
+      .formUser {
+        .forgotPassword {
+          display: block;
+          margin: auto;
+          margin-bottom: 95px;
+        }
+        .errors {
+          position: absolute;
+          top: 170px;
+          color: rgb(169, 95, 95);
+          font-size: 12px;
+        }
+        .buttonRight {
+          margin-bottom: 129px;
+          @include flex(row, flex-end, center);
+          height: 64px;
+          border: none;
+        }
+      }
+    }
+  }
+  footer {
+    .container {
+      @include flex(row, flex-start, flex-start);
+      p {
+        padding-left: 15px;
+        color: rgb(170, 170, 170);
+        margin-right: 5px;
+      }
+      a {
+        color: rgb(50, 74, 89);
+        margin-bottom: 71px;
+      }
+    }
+  }
+}

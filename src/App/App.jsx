@@ -46,12 +46,6 @@ function App() {
           }
           return;
         }
-      } else {
-        if (!welcomePage) {
-          navigate("/auth");
-        } else {
-          navigate("/open");
-        }
       }
     });
 
@@ -102,8 +96,9 @@ function App() {
             path="/"
             element={
               <WelcomePage
-                navigate={navigate}
                 setWelcomePage={setWelcomePage}
+                navigate={navigate}
+                auth={auth}
               />
             }
           />
@@ -111,7 +106,12 @@ function App() {
           <Route
             path="/registr"
             element={
-              <RegistrPage auth={auth} navigate={navigate} setFlag={setFlag} />
+              <RegistrPage
+                auth={auth}
+                navigate={navigate}
+                setFlag={setFlag}
+                setWelcomePage={setWelcomePage}
+              />
             }
           />
           <Route

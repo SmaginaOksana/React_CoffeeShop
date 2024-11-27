@@ -1,12 +1,13 @@
 import "./BasketPage.scss";
 import BasketItem from "../../components/BasketItem/BasketItem";
 import { useSelector } from "react-redux";
+import { deleteBasketItem } from "../../functions/deleteBasketItem";
 
 function BasketPage({ navigate, setFlag }) {
-  const basketItems = useSelector((state) => {
-    return state.basket.items;
+  const basket = useSelector((state) => {
+    return state.basket;
   });
-  const totalPrice = basketItems.reduce((acc, item) => {
+  const totalPrice = basket.items.reduce((acc, item) => {
     return acc + item.price * item.count;
   }, 0);
 
@@ -27,9 +28,16 @@ function BasketPage({ navigate, setFlag }) {
       </header>
       <main className="mainBasket">
         <div className="container">
-          {basketItems.length > 0 ? (
-            basketItems.map((item, index) => {
-              return <BasketItem item={item} key={index} setFlag={setFlag} />;
+          {basket.items.length > 0 ? (
+            basket.items.map((item, index) => {
+              return (
+                <BasketItem
+                  item={item}
+                  key={index}
+                  setFlag={setFlag}
+                  basket={basket}
+                />
+              );
             })
           ) : (
             <p>The basket is empty</p>
@@ -44,10 +52,13 @@ function BasketPage({ navigate, setFlag }) {
           </div>
           <button
             onClick={() => {
-              if (basketItems.length === 0) {
+              if (basket.items.length === 0) {
                 return;
               } else {
                 navigate("/ordered");
+                basket.items.forEach((item) => {
+                  deleteBasketItem(basket, item, setFlag);
+                });
               }
             }}
           >

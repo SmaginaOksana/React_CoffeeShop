@@ -1,6 +1,5 @@
 import "./RegistrPage.scss";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   createUserWithEmailAndPassword,
@@ -8,14 +7,11 @@ import {
 } from "firebase/auth";
 import { updateUsers } from "../../services/FB_server";
 
-function RegistrPage({ auth, navigate, setFlag }) {
-  const [success, setSuccess] = useState(false);
-
+function RegistrPage({ auth, navigate, setFlag, setWelcomePage }) {
   const {
     register,
     handleSubmit,
     reset,
-    getValues,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
@@ -24,13 +20,12 @@ function RegistrPage({ auth, navigate, setFlag }) {
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
-        sendEmailVerification(auth.currentUser).then(() => {
-          setSuccess(true);
-        });
+        sendEmailVerification(auth.currentUser);
         setFlag((prev) => !prev);
         updateUsers({ name: data.name, email: data.email });
         console.log("success");
         reset();
+        navigate("/auth");
       })
       .catch((error) => {
         console.log(error);
@@ -44,8 +39,10 @@ function RegistrPage({ auth, navigate, setFlag }) {
       <header className="headerRegistrPage">
         <div className="container">
           <div
+            className="left"
             onClick={() => {
               navigate("/");
+              setWelcomePage(true);
             }}
           >
             <img src="/left.png" alt="left" />
@@ -55,13 +52,7 @@ function RegistrPage({ auth, navigate, setFlag }) {
       <main className="mainRegistrPage">
         <div className="container">
           <h2>Sign up</h2>
-          {success ? (
-            <p className="create">
-              Account creation and sending confirmation to email was successful!
-            </p>
-          ) : (
-            <p className="create">Create an account here</p>
-          )}
+          <p className="create">Create an account here</p>
           <form onSubmit={handleSubmit(onSubmit, onError)} className="formUser">
             <div>
               <div className="img">

@@ -40,6 +40,7 @@ function AuthPage({ auth, navigate }) {
       <header className="headerAuthPage">
         <div className="container">
           <div
+            className="left"
             onClick={() => {
               navigate("/registr");
             }}

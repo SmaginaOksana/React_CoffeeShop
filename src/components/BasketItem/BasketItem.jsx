@@ -3,14 +3,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { deleteBasketItem } from "../../functions/deleteBasketItem";
 
-function BasketItem({ item, setFlag }) {
+function BasketItem({ item, setFlag, basket }) {
   const { name, count, price, image, ristretto, takeaway, volume } = item;
   const totalPrice = count * price;
   const [deleteClass, setDeleteClass] = useState(false);
-
-  const basket = useSelector((state) => {
-    return state.basket;
-  });
 
   return (
     <>

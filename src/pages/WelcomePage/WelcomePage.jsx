@@ -1,6 +1,6 @@
 import "./WelcomePage.scss";
 
-function WelcomePage({ navigate, setWelcomePage }) {
+function WelcomePage({ navigate, setWelcomePage, auth }) {
   return (
     <>
       <header className="headerWelcomePage"></header>
@@ -24,7 +24,11 @@ function WelcomePage({ navigate, setWelcomePage }) {
             <button
               className="right"
               onClick={() => {
-                setWelcomePage(false);
+                if (!auth.currentUser) {
+                  setWelcomePage(false);
+                } else {
+                  navigate("/open");
+                }
               }}
             >
               <img src="/right.png" alt="right" />

@@ -29,20 +29,26 @@
         }
         .emptyFields {
           position: absolute;
-          bottom: 170px;
+          top: -35px;
           color: rgb(169, 95, 95);
           font-size: 12px;
           line-height: 12px;
         }
+        .incorrect {
+          position: absolute;
+          top: -35px;
+          color: rgb(169, 95, 95);
+          font-size: 12px;
+        }
         .errors {
           position: absolute;
-          bottom: 30px;
+          top: 35px;
           color: rgb(169, 95, 95);
           font-size: 12px;
           line-height: 12px;
         }
         .buttonRight {
-          margin-bottom: 92px;
+          margin-bottom: 57px;
           @include flex(row, flex-end, center);
           height: 64px;
           border: none;

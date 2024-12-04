@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { setAuthUser } from "../../store/slices/authUserSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 
 function AuthPage({ auth, navigate }) {
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const {
     register,
@@ -30,6 +32,7 @@ function AuthPage({ auth, navigate }) {
         navigate("/open");
       })
       .catch((error) => {
+        setError(false);
         console.log(error);
       });
   };
@@ -54,6 +57,12 @@ function AuthPage({ auth, navigate }) {
           <h2>Sign in</h2>
           <p className="welcome">Welcome back</p>
           <form onSubmit={handleSubmit(onSubmit, onError)} className="formUser">
+            {error === false && (
+              <p className="incorrect">Incorrect login or password</p>
+            )}
+            {(errors.email || errors.password) && (
+              <p className="errors">All the fields are required!</p>
+            )}
             <div>
               <div className="img">
                 <img src="/message.png" alt="message" />
@@ -81,9 +90,6 @@ function AuthPage({ auth, navigate }) {
             <NavLink to="/forgotPassword" className="forgotPassword">
               Forgot password?
             </NavLink>
-            {(errors.email || errors.password) && (
-              <p className="errors">All the fields are required</p>
-            )}
             <div className="buttonRight">
               <button className="right">
                 <img src="/right.png" alt="right" />

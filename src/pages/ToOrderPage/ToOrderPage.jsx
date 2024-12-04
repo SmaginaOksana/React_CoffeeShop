@@ -7,9 +7,9 @@ import { addToBasket } from "../../functions/addToBasket.js";
 
 function ToOrder({ activeLink, navigate, setFlag }) {
   const typeOfCoffee = useSelector((state) => {
-    for (let key in state) {
-      if (key === activeLink) {
-        return state[key];
+    for (let key of state.coffee) {
+      if (key.name.toLowerCase() === activeLink) {
+        return key;
       }
     }
   });

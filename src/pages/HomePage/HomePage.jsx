@@ -1,11 +1,13 @@
 import "./HomePage.scss";
-import { content } from "../../content/content.js";
 import CoffeeHome from "../../components/CoffeeHome/CoffeeHome.jsx";
 import { useSelector } from "react-redux";
 
 export default function HomePage({ setActiveLink, navigate }) {
   const user = useSelector((state) => {
     return state.authUser;
+  });
+  const coffee = useSelector((state) => {
+    return state.coffee;
   });
 
   return (
@@ -31,7 +33,7 @@ export default function HomePage({ setActiveLink, navigate }) {
         <div className="container">
           <h4>Select your coffee</h4>
           <div className="coffeeContainer">
-            {content.map((item, index) => {
+            {coffee.map((item, index) => {
               return (
                 <CoffeeHome
                   item={item}

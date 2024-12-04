@@ -68,8 +68,9 @@ body {
   .formUser {
     position: relative;
     @include flex(column, space-between, flex-start);
-    gap: 36px;
+    gap: 43px;
     > div {
+      position: relative;
       width: 100%;
       border-top: none;
       border-left: none;

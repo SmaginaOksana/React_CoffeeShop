@@ -1,19 +1,9 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.scss";
 import { getData } from "../services/FB_server";
 import { useDispatch } from "react-redux";
-import {
-  setAmericano,
-  setCappuccino,
-  setLatte,
-  setFlatWhite,
-  setRaf,
-  setEspresso,
-  setBasket,
-  setUsers,
-} from "../store/index.js";
-
+import { setBasket, setUsers, setCoffee } from "../store/index.js";
 import {
   WelcomePage,
   RegistrPage,
@@ -35,7 +25,7 @@ function App() {
   const [flag, setFlag] = useState(false);
   const [welcomePage, setWelcomePage] = useState(true);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
         navigate("/");
@@ -50,40 +40,20 @@ function App() {
     });
 
     Promise.allSettled([
-      getData("Americano"),
-      getData("Cappuccino"),
-      getData("Latte"),
-      getData("Flat White"),
-      getData("Raf"),
-      getData("Espresso"),
       getData("basket"),
       getData("users"),
+      getData("coffee"),
     ]).then((results) => {
       if (results[0].status === "fulfilled") {
-        dispatch(setAmericano(results[0].value));
+        dispatch(setBasket(results[0].value ? results[0].value : []));
       }
       if (results[1].status === "fulfilled") {
-        dispatch(setCappuccino(results[1].value));
+        dispatch(
+          setUsers(results[1].value ? Object.values(results[1].value) : [])
+        );
       }
       if (results[2].status === "fulfilled") {
-        dispatch(setLatte(results[2].value));
-      }
-      if (results[3].status === "fulfilled") {
-        dispatch(setFlatWhite(results[3].value));
-      }
-      if (results[4].status === "fulfilled") {
-        dispatch(setRaf(results[4].value));
-      }
-      if (results[5].status === "fulfilled") {
-        dispatch(setEspresso(results[5].value));
-      }
-      if (results[6].status === "fulfilled") {
-        dispatch(setBasket(results[6].value ? results[6].value : []));
-      }
-      if (results[7].status === "fulfilled") {
-        dispatch(
-          setUsers(results[7].value ? Object.values(results[7].value) : [])
-        );
+        dispatch(setCoffee(results[2].value ? results[2].value : []));
       }
     });
   }, [flag, welcomePage]);

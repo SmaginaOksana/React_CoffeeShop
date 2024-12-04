@@ -27,14 +27,20 @@
           margin: auto;
           margin-bottom: 95px;
         }
+        .incorrect {
+          position: absolute;
+          top: -35px;
+          color: rgb(169, 95, 95);
+          font-size: 12px;
+        }
         .errors {
           position: absolute;
-          top: 170px;
+          top: 200px;
           color: rgb(169, 95, 95);
           font-size: 12px;
         }
         .buttonRight {
-          margin-bottom: 129px;
+          margin-bottom: 108px;
           @include flex(row, flex-end, center);
           height: 64px;
           border: none;

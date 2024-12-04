@@ -1,39 +1,40 @@
 {
-  "Americano": {
-    "count": 1,
-    "price": 3,
-    "image": "/homePageIMG/americano.png",
-    "name": "Americano"
-  },
-  "Cappuccino": {
-    "count": 1,
-    "price": 4,
-    "image": "/homePageIMG/cappuccino.png",
-    "name": "Cappuccino"
-  },
-  "Latte": {
-    "count": 1,
-    "price": 3.5,
-    "image": "/homePageIMG/latte.png",
-    "name": "Latte"
-  },
-  "Flat White": {
-    "count": 1,
-    "price": 4.5,
-    "image": "/homePageIMG/flat-white.png",
-    "name": "Flat White"
-  },
-  "Raf": {
-    "count": 1,
-    "price": 5,
-    "image": "/homePageIMG/raf.png",
-    "name": "Raf"
-  },
-  "Espresso": {
-    "count": 1,
-    "price": 3,
-    "image": "/homePageIMG/espresso.png",
-    "name": "Espresso"
-  },
-  "Basket": []
+  "coffee": [
+    {
+      "count": 1,
+      "price": 3,
+      "image": "/homePageIMG/americano.png",
+      "name": "Americano"
+    },
+    {
+      "count": 1,
+      "price": 4,
+      "image": "/homePageIMG/cappuccino.png",
+      "name": "Cappuccino"
+    },
+    {
+      "count": 1,
+      "price": 3.5,
+      "image": "/homePageIMG/latte.png",
+      "name": "Latte"
+    },
+    {
+      "count": 1,
+      "price": 4.5,
+      "image": "/homePageIMG/flat-white.png",
+      "name": "Flat White"
+    },
+    {
+      "count": 1,
+      "price": 5,
+      "image": "/homePageIMG/raf.png",
+      "name": "Raf"
+    },
+    {
+      "count": 1,
+      "price": 3,
+      "image": "/homePageIMG/espresso.png",
+      "name": "Espresso"
+    }
+  ]
 }

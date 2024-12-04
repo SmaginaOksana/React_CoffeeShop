@@ -1,6 +1,7 @@
 import "./RegistrPage.scss";
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -8,6 +9,7 @@ import {
 import { updateUsers } from "../../services/FB_server";
 
 function RegistrPage({ auth, navigate, setFlag, setWelcomePage }) {
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
@@ -23,11 +25,11 @@ function RegistrPage({ auth, navigate, setFlag, setWelcomePage }) {
         sendEmailVerification(auth.currentUser);
         setFlag((prev) => !prev);
         updateUsers({ name: data.name, email: data.email });
-        console.log("success");
         reset();
         navigate("/auth");
       })
       .catch((error) => {
+        setError(false);
         console.log(error);
       });
   };
@@ -54,6 +56,15 @@ function RegistrPage({ auth, navigate, setFlag, setWelcomePage }) {
           <h2>Sign up</h2>
           <p className="create">Create an account here</p>
           <form onSubmit={handleSubmit(onSubmit, onError)} className="formUser">
+            {error === false && (
+              <p className="incorrect">Such mail already exists</p>
+            )}
+            {(errors.name ||
+              errors.phone ||
+              errors.email ||
+              errors.password) && (
+              <p className="emptyFields">All the fields are required</p>
+            )}
             <div>
               <div className="img">
                 <img src="/profile.png" alt="profile" />
@@ -77,6 +88,12 @@ function RegistrPage({ auth, navigate, setFlag, setWelcomePage }) {
                 })}
                 placeholder="+375000000000"
               />
+              {errors.phone?.type === "pattern" && (
+                <p className="errors">
+                  The phone number must consist of digits and not contain spaces
+                  or hyphens
+                </p>
+              )}
             </div>
             <div>
               <div className="img">
@@ -102,29 +119,17 @@ function RegistrPage({ auth, navigate, setFlag, setWelcomePage }) {
                 })}
                 placeholder="Пароль"
               />
+              {errors.password?.type === "pattern" && (
+                <p className="errors">
+                  The password must contain at least one digit, one capital and
+                  one small letter of the Latin alphabet and be at least 8
+                  characters long
+                </p>
+              )}
             </div>
             <p className="terms">
               By signing up you agree with our Terms of Use
             </p>
-            {(errors.name ||
-              errors.phone ||
-              errors.email ||
-              errors.password) && (
-              <p className="emptyFields">All the fields are required</p>
-            )}
-            {errors.phone?.type === "pattern" && (
-              <p className="errors">
-                The phone number must consist of digits and not contain spaces
-                or hyphens
-              </p>
-            )}
-            {errors.password?.type === "pattern" && (
-              <p className="errors">
-                The password must contain at least one digit, one capital and
-                one small letter of the Latin alphabet and be at least 8
-                characters long
-              </p>
-            )}
             <div className="buttonRight">
               <button className="right">
                 <img src="/right.png" alt="right" />
